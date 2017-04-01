@@ -115,9 +115,18 @@ var heuristic = function(state, maximizingPlayer){
 
 	//An example.
     var linesOfLengthTwoForX = state.numLines(2, 'x')
+		var linesOfLengthTwoForO = state.numLines(2, 'o')
 
-    //Your code here.  Don't return random, obviously.
-	return Math.random()
+  //Your code here.  Don't return random, obviously.
+	// return Math.random()
+	let scoreForX = state.numLines(2, 'x') + state.numLines(3, 'x') * 15 + state.numLines(4, 'x') * 10000
+
+	let scoreForO = state.numLines(2, 'o') + state.numLines(3, 'o') * 15 + state.numLines(4, 'o') * 10000
+
+	let score = scoreForX - scoreForO
+
+	if (maximizingPlayer == 'x') return score
+	else return (-1 * score)
 }
 
 
@@ -145,8 +154,13 @@ var minimax = function(state, depth, maximizingPlayer){
 	var minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
 	var possibleStates = state.nextStates();
 	var currentPlayer = state.nextMovePlayer;
+	// console.log(depth, typeof(depth))
 	//Your code here.
-	return Math.random();
+	if (depth === 0 || state.legalMoves().length === 0) return heuristic(state, maximizingPlayer)
+	else {
+		// possibleStates.forEach()
+		return Math.random();
+	}
 }
 
 
