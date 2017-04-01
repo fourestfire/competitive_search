@@ -154,12 +154,25 @@ var minimax = function(state, depth, maximizingPlayer){
 	var minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
 	var possibleStates = state.nextStates();
 	var currentPlayer = state.nextMovePlayer;
-	// console.log(depth, typeof(depth))
+
+	console.log(currentPlayer)
 	//Your code here.
 	if (depth === 0 || state.legalMoves().length === 0) return heuristic(state, maximizingPlayer)
 	else {
-		// possibleStates.forEach()
-		return Math.random();
+		let value = heuristic(possibleStates[0], maximizingPlayer);
+		let newState = possibleStates[0];
+		possibleStates.forEach((state) => {
+			let currentValue = heuristic(state, maximizingPlayer)
+			if (currentValue > value) {
+				value = currentValue
+				newState = state
+			}
+		})
+		console.log(value, newState.board)
+		return value;
+		// console.log(heuristic(state, maximizingPlayer))
+		// console.log(state.board)
+		// return Math.random();
 	}
 }
 

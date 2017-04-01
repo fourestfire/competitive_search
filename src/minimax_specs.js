@@ -158,7 +158,7 @@ describe('Testing some basic functions in the minimax evaluation function', func
 
 	/* It should also return some kind of value when you call it and
 	   it does need to call itself recursively. */
-	it("It returns values of some kind when there's depth involved", function(){
+	it.only("It returns values of some kind when there's depth involved", function(){
 
 		for(var x = 0; x < 3; x++){
 			var s = new State();
